@@ -2,6 +2,7 @@
 # Pydantic models for sensor readings, alerts, and basic responses.
 
 from pydantic import BaseModel, Field
+from typing import Optional, Literal, Union
 from typing import Optional, Literal
 from datetime import datetime
 from uuid import UUID, uuid4
@@ -17,7 +18,7 @@ class SensorReading(BaseModel):
     # - water: 0/1 or boolean-like numeric
     # - smoke: 0.0~1.0 normalized
     # - temp: °C
-    value: float | str
+    value: Union[float, str]
     location: Optional[str] = "Unknown"
     ts: datetime = Field(default_factory=datetime.utcnow)
 
